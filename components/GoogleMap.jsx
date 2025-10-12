@@ -69,7 +69,7 @@ function GoogleMap() {
 	];
 
   return (
-    <APIProvider apiKey={'AIzaSyBQSEaJpTUx3J-lH-s9LJU3AgxAFTKuq5s'}>
+    <APIProvider apiKey={'Your-Api-Key'}>
       <Map 
         style={containerStyle}
         styles = {styles}
