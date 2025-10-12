@@ -1,4 +1,5 @@
 import { Inter } from 'next/font/google'
+import Script from 'next/script';
 import 'bootstrap/dist/css/bootstrap.css'
 import Header from '@/components/Header'
 import Navigation from '@/components/Navigation'
@@ -39,9 +40,45 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "url": "https://www.serwisagd.swiebodzin.pl/",
+    "name": "Serwis Agd Świebodzin - Naprawa pralek i zmywarek",
+    "alternateName": "Naprawa pralek Świebodzin, zmywarek, Chodkiewicz, suszarek i ekspresów do kawy.",
+    "description": "Chodkiewicz - Naprawa pralek, zmywarek, suszarek i ekspresów do kawy. Świebodzin, Międzyrzecz, Sulechów,Lubrza,części zamienne, Naprawa płyt indukcyjnych",
+    "openingHours": "Poniedziałek, Wtorek, Środa, Czwartek, Piątek, Sobota po ugodnieniu telefoninczym, Niedziela NIECZYNNE",
+    "image": "https://www.serwisagd.swiebodzin.pl/opengraph-image.jpg",
+    "telephone": "+48600641862",
+    "priceRange": "od 100,- PLN",
+    "address":
+    {
+      "@type": "PostalAddress",
+      "addressCountry": "PL",
+      "addressRegion": "Lubuskie",
+      "addressLocality": "Świebodzin",
+      "postalCode": "66-200",
+      "streetAddress": "Wałowa 56"
+    }
+    ,
+    "contactPoint":
+    {
+      "@type": "ContactPoint",
+      "telephone": "+48600641862",
+      "contactType": "Rezerwacja"
+    }
+  };
+
   return (
     <>
-      <html lang="pl">
+      <html lang="pl" itemScope itemType='http://schema.org/WebPage'>
+        <Script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-540295186705341`}
+          strategy="lazyOnload"
+          crossOrigin="anonymous"
+        />
         <body>
           <main>
             <Header />
@@ -51,6 +88,11 @@ export default function RootLayout({ children }) {
           <Footer />
           <ScrollToTopButton />
           <BootstrapClient />
+          <Seo />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
         </body>
       </html>
     </>

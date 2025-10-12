@@ -1,6 +1,0 @@
-Options +FollowSymLinks
-RewriteEngine on
-RewriteBase /
-DirectoryIndex index.html
-
-Redirect 301 /kontakt/34/ https://www.serwisagd.swiebodzin.pl/kontakt/

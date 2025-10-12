@@ -1,7 +1,7 @@
 "use client"
 
 import Image from 'next/image'
-import GoogleMapTag from '@/components/GoogleMap'
+import GoogleMapTag from '@/components/GoogleFrameMap'
 
 const GoogleMapTxt = () => {
     return (

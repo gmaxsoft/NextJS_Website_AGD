@@ -11,7 +11,7 @@ export default function BootstrapCarousel() {
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
-  
+
   return (
     <Carousel activeIndex={index} onSelect={handleSelect} className="slider">
       {bootstrap.map((item) => (
