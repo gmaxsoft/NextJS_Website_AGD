@@ -1,0 +1,22 @@
+# Apache jako reverse proxy do Next.js (PM2 na porcie 3000).
+# Wgraj ten plik do DocumentRoot vhosta albo wklej reguły do konfiguracji Apache.
+# Wymagane moduły: rewrite, proxy, proxy_http, headers, ssl.
+
+Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set X-Content-Type-Options "nosniff"
+Header set Referrer-Policy "same-origin"
+
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /
+
+# HTTP -> HTTPS
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Proxy do serwera Node.js / Next.js
+RewriteCond %{REQUEST_URI} !^/\.well-known/
+RewriteRule ^(.*)$ http://127.0.0.1:3000/$1 [P,L]
+ProxyPassReverse / http://127.0.0.1:3000/

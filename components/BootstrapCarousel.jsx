@@ -19,7 +19,7 @@ export default function BootstrapCarousel() {
           <img src={item.imageUrl} alt="slides" />
           <Carousel.Caption className="caption">
             <h3>{item.body}</h3>
-            <a href="/oferta" className="btn btn-danger" title="Oferta">Zobacz ofertę</a>
+            <a href="/oferta/" className="btn btn-danger" title="Oferta">Zobacz ofertę</a>
           </Carousel.Caption>
         </Carousel.Item>
       ))}

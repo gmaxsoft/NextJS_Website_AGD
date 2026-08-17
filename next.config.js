@@ -3,11 +3,40 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 const nextConfig = {
-    trailingSlash: true,
-    output: 'export',
-    images: {
-        unoptimized: true
-    },
-};
+  trailingSlash: true,
+  reactStrictMode: true,
+  poweredByHeader: false,
+  compress: true,
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
+  async redirects() {
+    return [
+      {
+        source: '/kontakt/34',
+        destination: '/kontakt/',
+        permanent: true,
+      },
+      {
+        source: '/kontakt/34/',
+        destination: '/kontakt/',
+        permanent: true,
+      },
+    ]
+  },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains; preload' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'same-origin' },
+        ],
+      },
+    ]
+  },
+}
 
-module.exports = nextConfig
+module.exports = withBundleAnalyzer(nextConfig)

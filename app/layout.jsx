@@ -11,6 +11,8 @@ import '@/styles/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
+export const revalidate = 3600
+
 export const metadata = {
   metadataBase: new URL('https://www.serwisagd.swiebodzin.pl/'),
   title: 'Naprawa pralek Świebodzin, zmywarek, Chodkiewicz, suszarek i ekspresów do kawy. Świebodzin, Międzyrzecz, Sulechów, Lubrza, części zamienne, płyty indukcyjne',
@@ -73,12 +75,6 @@ export default function RootLayout({ children }) {
   return (
     <>
       <html lang="pl" itemScope itemType='http://schema.org/WebPage'>
-        <Script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-540295186705341`}
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-        />
         <body>
           <main>
             <Header />
